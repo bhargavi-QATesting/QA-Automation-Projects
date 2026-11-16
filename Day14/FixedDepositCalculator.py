@@ -33,19 +33,14 @@ for r in range(2, rows+1):
     calvalue3.clear()
     calvalue3.send_keys(rateofReturn)
     time.sleep(2)
+
     # Close popup using its close button
-    # Close popup
-    popup_close = driver.find_element(
-        By.XPATH, "//button[contains(@class,'cbmcclose')]"
-    )
-
-    driver.execute_script("arguments[0].click();", popup_close)
-
-    time.sleep(3)
+    #popup_close = driver.find_element(By.XPATH, "//button[contains(@class,'cbmcclose')]")
+    #driver.execute_script("arguments[0].click();", popup_close)
+    #time.sleep(3)
 
     # Check popup status
-    popup = driver.find_element(By.ID, "main_popup_modal_div")
-
+    #popup = driver.find_element(By.ID, "main_popup_modal_div")
     #print("Popup displayed:", popup.is_displayed())
 
     overlays = driver.find_elements(By.CLASS_NAME, "wzrk-overlay")
@@ -54,11 +49,7 @@ for r in range(2, rows+1):
         print("Overlay displayed:", overlay.is_displayed())
 
     # Click interest frequency option
-    calvalue4 = driver.find_element(
-        By.XPATH,
-        "//div[@class='clearfix range_block MT10 yesno_container']//div[@class='clearfix']"
-    )
-
+    calvalue4 = driver.find_element(By.XPATH,"//div[@class='clearfix range_block MT10 yesno_container']//div[@class='clearfix']")
     driver.execute_script("arguments[0].click();", calvalue4)
     time.sleep(2)
     calvalue5 = driver.find_element(By.XPATH,"//input[@id='edulonvalue_4']")
@@ -66,11 +57,7 @@ for r in range(2, rows+1):
     calvalue5.send_keys(TaxRate)
     time.sleep(2)
     # Click Calculate button using JavaScript
-    calculate_button = driver.find_element(
-        By.XPATH,
-        "//a[contains(@class,'btn_common') and contains(@onclick,'calculate')]"
-    )
-
+    calculate_button = driver.find_element(By.XPATH,"//a[contains(@class,'btn_common') and contains(@onclick,'calculate')]")
     driver.execute_script("arguments[0].click();", calculate_button)
     time.sleep(2)
     ActualValue = driver.find_element(By.XPATH,"/html/body/main/div[7]/section/div/div/div[1]/div[2]/div/div/div[7]/div[2]/div[1]/div").text
@@ -88,7 +75,5 @@ for r in range(2, rows+1):
         ExcelUtils.fillRedColor(file, "Sheet1", r, 8,)
 
     reset_button = driver.find_element(By.ID, "reset_btn")
-
     driver.execute_script("arguments[0].click();", reset_button)
-
     time.sleep(2)
